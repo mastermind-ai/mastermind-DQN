@@ -7,6 +7,18 @@ actionDim = len(mastermind.colorPairs)
 dqn = DQN(stateDim=stateDim,actionDim=actionDim)
 maxAttempt = 20
 
+def feebackToColors(feedback):
+    feedbackList = []
+    for value in feedback:
+        if value == 0:
+            feedbackList.append("default")
+        elif value == 1:
+            feedbackList.append("white")
+        elif value == 2:
+            feedbackList.append("black")
+    return feedbackList
+
+
 def start(answer):
     board, state = [],[]
     mastermind.reset()
@@ -22,7 +34,7 @@ def start(answer):
     curState = mastermind.code2state(guessedCode, feedback)
 
     board.append(guessedCode)
-    state.append(feedback)
+    state.append(feebackToColors(feedback))
 
     while (not mastermind.win) and (mastermind.attempts <= maxAttempt):
         # make a guess
@@ -39,7 +51,7 @@ def start(answer):
         curState = nextState
 
         board.append(guessedCode)
-        state.append(feedback)
+        state.append(feebackToColors(feedback))
 
     # print("Game over,AI attempted %d times"%mastermind.attempts)
 
