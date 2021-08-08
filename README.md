@@ -49,5 +49,6 @@ python Accuracy.py
 Results
 
 Model Successfully Loaded
+
 Play:1000 Average Attempts:6.17 Stuck:96
 
