@@ -13,6 +13,7 @@ class Mastermind():
 		self.reset()
 
 	def guess(self,guessed_code):
+		""" Check the guessed code and return feedback"""
 		self.attempts += 1
 		return_code = []
 		for i in range(len(self.color_code)):
@@ -27,6 +28,7 @@ class Mastermind():
 		return return_code
 
 	def code2state(self,guessed_code,return_code):
+		""" One hot encoding of the current state"""
 		state = []
 		for color in guessed_code:
 			array = [0 for i in self.colors]
@@ -39,6 +41,7 @@ class Mastermind():
 		return state
 
 	def reset(self):
+		""" Reset the game"""
 		self.win = False
 		self.attempts = 0
 		self.color_code = random.sample(self.colors,4)

@@ -50,6 +50,7 @@ class DQN():
         self.memory = {"curState":[],"action":[],"reward":[],"nextState":[]}
 
     def saveMemory(self,curState,action,reward,nextState):
+        """ save the current state of the game"""
         self.memory["curState"].append(curState)
         self.memory["action"].append(action)
         self.memory["reward"].append(reward)
@@ -61,6 +62,7 @@ class DQN():
         self.memory["nextState"] = self.memory["nextState"][-1 * self.memorySize:]
 
     def getBatchMemory(self):
+        """ load the current state of the game"""
         batchSize = min(self.batchSize, len(self.memory["reward"]))
         indexs = np.random.choice(range(len(self.memory["reward"])),batchSize,replace=False)
 
@@ -76,6 +78,7 @@ class DQN():
         return curState,action,reward,nextState
 
     def learn(self):
+        """ Training the model"""
         self.evalNet.train()
         curStates, actions, rewards, nextStates = self.getBatchMemory()
         qEval = self.evalNet(curStates)
@@ -93,9 +96,11 @@ class DQN():
         return loss
 
     def saveModel(self):
+        """ Save the model file in the specified path"""
         torch.save(self.evalNet.state_dict(),self.modelPath)
 
     def loadModel(self):
+        """ Load the model file from the specified path"""
         if os.path.exists(self.modelPath):
             self.evalNet.load_state_dict(torch.load(self.modelPath))
             self.targetNet.load_state_dict(torch.load(self.modelPath))
@@ -104,6 +109,7 @@ class DQN():
             print("Model  does not exist, retraining")
 
     def chooseAction(self, state,greed=False):
+        """ Choose which action to play based on the output of the neural network"""
         state = np.array(state).reshape(1,-1)
         state = torch.FloatTensor(state)
         self.evalNet.eval()
