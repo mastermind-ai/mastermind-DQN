@@ -23,5 +23,6 @@ Play:1000 Average Attempts: 6.17 Stuck: 96
 
 | Color configuration | Allow Duplicates? | Average guesses (out of 1000) |
 | ------------------- | ----------------- | ----------------------------- |
-| 5 choose 4          | No                | 6.17                         |
+| 5 choose 4 (incl stuck attempts)| No                | 6.17                         |
+| 5 choose 4 (excl stuck attempts)| No                | 4.58                         |
 
