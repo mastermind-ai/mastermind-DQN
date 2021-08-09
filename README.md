@@ -23,10 +23,9 @@ python Accuracy.py
 ```
 Model Successfully Loaded
 
-Play:1000 Average Attempts:6.17 Stuck:96
+Play:1000 Average Attempts: 6.17 Stuck: 96
 
-Results
-
+**Results**
 
 | Color configuration | Allow Duplicates? | Average guesses (out of 1000) |
 | ------------------- | ----------------- | ----------------------------- |
